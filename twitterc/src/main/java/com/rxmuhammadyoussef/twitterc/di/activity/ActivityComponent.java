@@ -5,9 +5,13 @@ package com.rxmuhammadyoussef.twitterc.di.activity;
  (i.e. {@link com.rxmuhammadyoussef.twitterc.di.activity.ActivityModule}), and the object which expresses a dependency.
  */
 
+import com.rxmuhammadyoussef.twitterc.ui.login.LoginActivity;
+
 import dagger.Subcomponent;
 
 @ActivityScope
 @Subcomponent(modules = {ActivityModule.class})
 public interface ActivityComponent {
+
+    void inject(LoginActivity loginActivity);
 }

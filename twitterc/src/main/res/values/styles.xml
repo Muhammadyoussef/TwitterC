@@ -2,10 +2,35 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+
     </style>
 
+    <!--Login-->
+    <style name="LoginTheme" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/colorLoginLayoutBackground</item>
+        <item name="android:buttonStyle">@style/LoginButtonStyle</item>
+        <item name="android:textViewStyle">@style/LoginTextViewStyle</item>
+    </style>
+
+    <style name="LoginTextViewStyle" parent="android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/textSizeLoginBody</item>
+        <item name="android:textColor">@color/colorLoginTextViewBody</item>
+    </style>
+
+    <style name="LoginButtonStyle" parent="android:style/Widget.Button">
+        <item name="android:textSize">@dimen/textSizeLoginBody</item>
+        <item name="android:textColor">@color/colorLoginButtonText</item>
+        <item name="android:paddingTop">@dimen/paddingTopLoginButton</item>
+        <item name="android:paddingBottom">@dimen/paddingBottomLoginButton</item>
+        <item name="android:paddingStart">@dimen/paddingStartLoginButton</item>
+        <item name="android:paddingEnd">@dimen/paddingEndLoginButton</item>
+        <item name="android:background">@drawable/selector_button_login</item>
+        <item name="android:drawablePadding">@dimen/paddingLoginDrawable</item>
+    </style>
+
+    <style name="LoginTextViewHeaderStyle" parent="android:style/Widget.TextView">
+        <item name="android:textColor">@color/colorLoginTextViewHeader</item>
+        <item name="android:textSize">@dimen/textSizeLoginHeader</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

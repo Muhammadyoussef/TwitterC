@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Main-->
+    <dimen name="margin">16dp</dimen>
+    <dimen name="padding">16dp</dimen>
+
+    <!--Login-->
+    <!--TextView-->
+    <dimen name="paddingLoginTextView">16dp</dimen>
+    <dimen name="marginLoginTextView">16dp</dimen>
+    <dimen name="textSizeLoginHeader">20sp</dimen>
+    <dimen name="textSizeLoginBody">16sp</dimen>
+    <!--Button-->
+    <dimen name="marginTopLoginButton">120dp</dimen>
+    <dimen name="marginBottomLoginButton">16dp</dimen>
+    <dimen name="marginStartLoginButton">0dp</dimen>
+    <dimen name="marginEndLoginButton">0dp</dimen>
+    <dimen name="paddingLoginDrawable">16dp</dimen>
+    <dimen name="paddingTopLoginButton">16dp</dimen>
+    <dimen name="paddingBottomLoginButton">16dp</dimen>
+    <dimen name="paddingStartLoginButton">48dp</dimen>
+    <dimen name="paddingEndLoginButton">48dp</dimen>
+    <dimen name="radiusLoginButton">50dp</dimen>
+</resources>

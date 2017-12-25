@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--Main-->
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--Login-->
+    <color name="colorLoginLayoutBackground">#e5e5e5</color>
+    <!--TextView-->
+    <color name="colorLoginTextViewHeader">#FF525252</color>
+    <color name="colorLoginTextViewBody">#FF525252</color>
+    <!--Button-->
+    <color name="colorLoginButton">#FF1DA1F2</color>
+    <color name="colorLoginButtonText">#FFFFFF</color>
+    <color name="colorLoginButtonRipple">#FFFFFF</color>
+
 </resources>
