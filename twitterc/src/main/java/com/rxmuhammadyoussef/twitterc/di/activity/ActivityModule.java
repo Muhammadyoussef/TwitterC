@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.rxmuhammadyoussef.twitterc.ui.home.HomeScreen;
-import com.rxmuhammadyoussef.twitterc.ui.login.LoginScreen;
 
 import dagger.Module;
 import dagger.Provides;
@@ -31,12 +30,6 @@ public class ActivityModule {
     @ForActivity
     public final Context provideActivityContext() {
         return activity;
-    }
-
-    @ActivityScope
-    @Provides
-    public final LoginScreen provideLoginScreen() {
-        return (LoginScreen) activity;
     }
 
     @ActivityScope

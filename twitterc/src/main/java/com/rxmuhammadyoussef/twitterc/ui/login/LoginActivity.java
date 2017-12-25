@@ -16,22 +16,18 @@ import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterAuthClient;
 
-import javax.inject.Inject;
-
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import timber.log.Timber;
 
 /**
  This class represents the view layer of the login process which handles all the UI interactions
  */
 
 @ActivityScope
-public class LoginActivity extends Activity implements LoginScreen {
+public class LoginActivity extends Activity {
 
     private TwitterAuthClient authClient;
-
-    @Inject
-    LoginPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,17 +48,6 @@ public class LoginActivity extends Activity implements LoginScreen {
         authClient.onActivityResult(requestCode, resultCode, data);
     }
 
-    @Override
-    protected void onDestroy() {
-        presenter.onDestroy();
-        super.onDestroy();
-    }
-
-    @Override
-    public void onUserReady() {
-        navigateToHomePage();
-    }
-
     private void navigateToHomePage() {
         startActivity(new Intent(this, HomeActivity.class));
         finish();
@@ -74,12 +59,12 @@ public class LoginActivity extends Activity implements LoginScreen {
         authClient.authorize(this, new Callback<TwitterSession>() {
             @Override
             public void success(Result<TwitterSession> result) {
-                presenter.loginSuccess(result.data.getUserId(), result.data.getUserName());
+                navigateToHomePage();
             }
 
             @Override
             public void failure(TwitterException exception) {
-                presenter.loginFailure(exception);
+                Timber.e(exception);
             }
         });
     }
