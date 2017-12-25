@@ -7,6 +7,7 @@ import android.os.StrictMode;
 import com.rxmuhammadyoussef.twitterc.di.application.AppComponent;
 import com.rxmuhammadyoussef.twitterc.di.application.ApplicationScope;
 import com.rxmuhammadyoussef.twitterc.di.application.DaggerAppComponent;
+import com.twitter.sdk.android.core.Twitter;
 
 import io.realm.Realm;
 import timber.log.Timber;
@@ -23,8 +24,8 @@ public class TwitterCApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         Realm.init(this);
+        Twitter.initialize(this);
         appComponent.inject(this);
         setStrictModeForDebugEnabled(true);
         setTimberDebugTreeEnabled(true);

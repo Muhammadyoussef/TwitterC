@@ -17,6 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -51,6 +55,9 @@ dependencies {
 
     // Timber
     implementation 'com.jakewharton.timber:timber:4.6.0'
+
+    // Twitter
+    implementation 'com.twitter.sdk.android:twitter-core:3.1.1'
 
     // Testing
     testImplementation 'junit:junit:4.12'
