@@ -12,7 +12,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import timber.log.Timber;
 
 /**
- This class represents the presenter layer of the loginSuccess process which handles all the logic
+ This class represents the presenter layer of the login process which handles all the logic
  */
 
 @ActivityScope

@@ -6,4 +6,9 @@
     <string name="welcome_to_twitterc">Welcome to TwitterC</string>
     <string name="login_to_proceed">Please login with your account to proceed</string>
     <string name="login_with_twitter">Login with Twitter</string>
+
+    <!--Home page-->
+    <string name="followers">Followers</string>
+    <string name="user_avatar_content_description">User avatar</string>
+    <string name="logout">logout</string>
 </resources>

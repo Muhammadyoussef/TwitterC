@@ -3,6 +3,7 @@ package com.rxmuhammadyoussef.twitterc.di.activity;
 import android.app.Activity;
 import android.content.Context;
 
+import com.rxmuhammadyoussef.twitterc.ui.home.HomeScreen;
 import com.rxmuhammadyoussef.twitterc.ui.login.LoginScreen;
 
 import dagger.Module;
@@ -36,5 +37,11 @@ public class ActivityModule {
     @Provides
     public final LoginScreen provideLoginScreen() {
         return (LoginScreen) activity;
+    }
+
+    @ActivityScope
+    @Provides
+    public final HomeScreen provideHomeScreen() {
+        return (HomeScreen) activity;
     }
 }

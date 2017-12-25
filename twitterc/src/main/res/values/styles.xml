@@ -33,4 +33,28 @@
         <item name="android:textSize">@dimen/textSizeLoginHeader</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <!--HomePage-->
+    <style name="HomePageTheme" parent="android:Theme.Material.Light.DarkActionBar">
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:windowBackground">@color/colorHomePageLayoutBackground</item>
+        <item name="android:textViewStyle">@null</item>
+    </style>
+
+    <style name="HomePageTextViewHeaderStyle" parent="android:style/Widget.TextView">
+        <item name="android:textColor">@color/colorHomePageTextViewHeader</item>
+        <item name="android:textSize">@dimen/textSizeHomePageHeader</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="HomePageTextViewSubheaderStyle" parent="android:style/Widget.TextView">
+        <item name="android:textColor">@color/colorHomePageTextViewSubheader</item>
+        <item name="android:textSize">@dimen/textSizeHomePageSubheader</item>
+    </style>
+
+    <style name="HomePageTextViewBodyStyle" parent="android:style/Widget.TextView">
+        <item name="android:textColor">@color/colorHomePageTextViewBody</item>
+        <item name="android:textSize">@dimen/textSizeHomePageBody</item>
+    </style>
 </resources>

@@ -3,12 +3,12 @@ package com.rxmuhammadyoussef.twitterc.ui.login;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.rxmuhammadyoussef.twitterc.R;
 import com.rxmuhammadyoussef.twitterc.TwitterCApplication;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityModule;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityScope;
+import com.rxmuhammadyoussef.twitterc.ui.home.HomeActivity;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterCore;
@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- This class represents the view layer of the loginSuccess process which handles all the UI interactions
+ This class represents the view layer of the login process which handles all the UI interactions
  */
 
 @ActivityScope
@@ -37,7 +37,7 @@ public class LoginActivity extends Activity implements LoginScreen {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (null != TwitterCore.getInstance().getSessionManager().getActiveSession()) {
-            //TODO: start home intent
+            navigateToHomePage();
         }
         setContentView(R.layout.activity_login);
         TwitterCApplication.getComponent(this)
@@ -60,7 +60,12 @@ public class LoginActivity extends Activity implements LoginScreen {
 
     @Override
     public void onUserReady() {
-        //TODO: start home intent
+        navigateToHomePage();
+    }
+
+    private void navigateToHomePage() {
+        startActivity(new Intent(this, HomeActivity.class));
+        finish();
     }
 
     @OnClick(R.id.btn_login)

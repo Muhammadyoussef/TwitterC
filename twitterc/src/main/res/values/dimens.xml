@@ -21,4 +21,18 @@
     <dimen name="paddingStartLoginButton">48dp</dimen>
     <dimen name="paddingEndLoginButton">48dp</dimen>
     <dimen name="radiusLoginButton">50dp</dimen>
+
+    <!--Home page-->
+    <dimen name="dividerHeightHomePage">0.5dp</dimen>
+    <!--TextView-->
+    <dimen name="paddingHomePageTextView">16dp</dimen>
+    <dimen name="marginHomePageTextView">16dp</dimen>
+    <dimen name="marginTopHomePageTextView">8dp</dimen>
+    <dimen name="marginBottomHomePageTextView">8dp</dimen>
+    <dimen name="textSizeHomePageHeader">20sp</dimen>
+    <dimen name="textSizeHomePageSubheader">18sp</dimen>
+    <dimen name="textSizeHomePageBody">18sp</dimen>
+    <!--ImageView-->
+    <dimen name="marginHomePageImageView">16dp</dimen>
+    <dimen name="homepage_avatar_size">40dp</dimen>
 </resources>

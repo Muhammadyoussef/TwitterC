@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout android:id="@+id/item_follower_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.home.HomeActivity">
+
+    <ImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="@dimen/homepage_avatar_size"
+        android:layout_height="@dimen/homepage_avatar_size"
+        android:layout_margin="@dimen/marginHomePageImageView"
+        android:contentDescription="@string/user_avatar_content_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_full_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginHomePageTextView"
+        android:theme="@style/HomePageTextViewHeaderStyle"
+        app:layout_constraintStart_toEndOf="@id/iv_avatar"
+        app:layout_constraintTop_toTopOf="@id/iv_avatar"
+        tools:text="Muhammad Youssef" />
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/marginHomePageTextView"
+        android:layout_marginStart="@dimen/marginTopHomePageTextView"
+        android:theme="@style/HomePageTextViewBodyStyle"
+        app:layout_constraintBottom_toBottomOf="@id/tv_full_name"
+        app:layout_constraintStart_toEndOf="@id/tv_full_name"
+        app:layout_constraintTop_toTopOf="@id/tv_full_name"
+        tools:text="@Myyousseff" />
+
+    <TextView
+        android:id="@+id/tv_user_bio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/marginBottomHomePageTextView"
+        android:layout_marginEnd="@dimen/marginHomePageTextView"
+        android:layout_marginStart="@dimen/marginHomePageTextView"
+        android:layout_marginTop="@dimen/marginTopHomePageTextView"
+        android:theme="@style/HomePageTextViewSubheaderStyle"
+        app:layout_constraintBottom_toTopOf="@+id/div"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_avatar"
+        app:layout_constraintTop_toBottomOf="@id/tv_full_name"
+        tools:text="Lorem d do eiusmod tempor incididunt ut labore" />
+
+    <View
+        android:id="@+id/div"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dividerHeightHomePage"
+        android:layout_marginBottom="@dimen/margin"
+        android:layout_marginTop="@dimen/margin"
+        android:background="@color/colorHomePageDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_bio" />
+</android.support.constraint.ConstraintLayout>
