@@ -1,7 +1,5 @@
 package com.rxmuhammadyoussef.twitterc.ui.login;
 
-import android.util.Pair;
-
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityScope;
 import com.rxmuhammadyoussef.twitterc.models.user.UserMapper;
 import com.rxmuhammadyoussef.twitterc.schedulers.ThreadSchedulers;
@@ -23,24 +21,26 @@ class LoginPresenter {
     private final ThreadSchedulers threadSchedulers;
     private final CompositeDisposable disposable;
     private final LoginScreen loginScreen;
+    private final LoginLocalStore store;
     private final UserMapper mapper;
-    private final LoginRepo repo;
 
     @Inject
-    LoginPresenter(@IOThread ThreadSchedulers threadSchedulers, LoginScreen loginScreen, LoginRepo repo,
-                   UserMapper mapper) {
+    LoginPresenter(@IOThread ThreadSchedulers threadSchedulers, LoginScreen loginScreen, LoginLocalStore store, UserMapper mapper) {
         this.threadSchedulers = threadSchedulers;
         this.loginScreen = loginScreen;
-        this.repo = repo;
+        this.store = store;
         this.mapper = mapper;
-        disposable = new CompositeDisposable();
+        this.disposable = new CompositeDisposable();
     }
 
     void loginSuccess(long userId, String userName) {
         disposable.add(
-                Single.just(new Pair<>(userId, userName))
-                        .map(mapper::toUser)
-                        .flatMapCompletable(repo::save)
+                Single.zip(
+                        Single.just(userId),
+                        Single.just(userName),
+                        mapper::toUser)
+                        .map(mapper::toUserEntity)
+                        .flatMapCompletable(store::saveUser)
                         .subscribeOn(threadSchedulers.subscribeOn())
                         .observeOn(threadSchedulers.observeOn())
                         .subscribe(loginScreen::onUserReady, Timber::e));

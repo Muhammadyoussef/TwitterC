@@ -1,7 +1,5 @@
 package com.rxmuhammadyoussef.twitterc.models.user;
 
-import android.util.Pair;
-
 import com.rxmuhammadyoussef.twitterc.di.application.ApplicationScope;
 
 import javax.inject.Inject;
@@ -18,8 +16,8 @@ public class UserMapper {
 
     }
 
-    public User toUser(Pair<Long, String> idUserNamePair) {
-        return new User(idUserNamePair.first, idUserNamePair.second);
+    public User toUser(long userId, String userName) {
+        return new User(userId, userName);
     }
 
     public UserEntity toUserEntity(User user) {
