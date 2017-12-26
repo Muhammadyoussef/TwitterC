@@ -34,5 +34,5 @@
     <dimen name="textSizeHomePageBody">18sp</dimen>
     <!--ImageView-->
     <dimen name="marginHomePageImageView">16dp</dimen>
-    <dimen name="homepage_avatar_size">40dp</dimen>
+    <dimen name="homepage_avatar_size">56dp</dimen>
 </resources>

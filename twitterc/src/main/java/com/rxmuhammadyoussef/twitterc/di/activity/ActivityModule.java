@@ -3,10 +3,13 @@ package com.rxmuhammadyoussef.twitterc.di.activity;
 import android.app.Activity;
 import android.content.Context;
 
+import com.rxmuhammadyoussef.twitterc.di.application.ApplicationScope;
+import com.rxmuhammadyoussef.twitterc.di.application.ForApplication;
 import com.rxmuhammadyoussef.twitterc.ui.home.HomeScreen;
 
 import dagger.Module;
 import dagger.Provides;
+import io.reactivex.disposables.CompositeDisposable;
 
 /**
  This class is responsible for providing the requested objects for {@link ActivityScope} objects

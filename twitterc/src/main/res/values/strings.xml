@@ -11,4 +11,5 @@
     <string name="followers">Followers</string>
     <string name="user_avatar_content_description">User avatar</string>
     <string name="logout">logout</string>
+    <string name="network_error">Network error</string>
 </resources>

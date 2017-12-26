@@ -5,16 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
     tools:context=".ui.home.HomeActivity">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_avatar"
         android:layout_width="@dimen/homepage_avatar_size"
         android:layout_height="@dimen/homepage_avatar_size"
         android:layout_margin="@dimen/marginHomePageImageView"
         android:contentDescription="@string/user_avatar_content_description"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01"
         tools:src="@mipmap/ic_launcher" />
 
     <TextView
@@ -43,24 +48,15 @@
         android:id="@+id/tv_user_bio"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/marginBottomHomePageTextView"
+        android:layout_marginBottom="@dimen/marginHomePageTextView"
         android:layout_marginEnd="@dimen/marginHomePageTextView"
         android:layout_marginStart="@dimen/marginHomePageTextView"
         android:layout_marginTop="@dimen/marginTopHomePageTextView"
+        android:gravity="left"
         android:theme="@style/HomePageTextViewSubheaderStyle"
-        app:layout_constraintBottom_toTopOf="@+id/div"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_avatar"
         app:layout_constraintTop_toBottomOf="@id/tv_full_name"
         tools:text="Lorem d do eiusmod tempor incididunt ut labore" />
-
-    <View
-        android:id="@+id/div"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dividerHeightHomePage"
-        android:layout_marginBottom="@dimen/margin"
-        android:layout_marginTop="@dimen/margin"
-        android:background="@color/colorHomePageDivider"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_user_bio" />
 </android.support.constraint.ConstraintLayout>

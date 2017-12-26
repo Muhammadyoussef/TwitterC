@@ -5,9 +5,12 @@ import android.content.Context;
 import android.os.StrictMode;
 
 import com.rxmuhammadyoussef.twitterc.di.application.AppComponent;
+import com.rxmuhammadyoussef.twitterc.di.application.AppModule;
 import com.rxmuhammadyoussef.twitterc.di.application.ApplicationScope;
 import com.rxmuhammadyoussef.twitterc.di.application.DaggerAppComponent;
 import com.twitter.sdk.android.core.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterConfig;
 
 import io.realm.Realm;
 import timber.log.Timber;
@@ -19,16 +22,26 @@ import timber.log.Timber;
 @ApplicationScope
 public class TwitterCApplication extends Application {
 
-    private final AppComponent appComponent = DaggerAppComponent.create();
+    private final AppComponent appComponent = createComponent();
 
     @Override
     public void onCreate() {
         super.onCreate();
         Realm.init(this);
-        Twitter.initialize(this);
+        Twitter.initialize(new TwitterConfig.Builder(this)
+                .twitterAuthConfig(new TwitterAuthConfig(
+                        getString(R.string.CONSUMER_KEY),
+                        getString(R.string.CONSUMER_SECRET)))
+                .build());
         appComponent.inject(this);
         setStrictModeForDebugEnabled(true);
         setTimberDebugTreeEnabled(true);
+    }
+
+    private AppComponent createComponent() {
+        return DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
+                .build();
     }
 
     /*

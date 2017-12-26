@@ -29,6 +29,7 @@ dependencies {
     implementation 'com.android.support:design:27.0.2'
     implementation 'com.android.support:recyclerview-v7:27.0.2'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 
     // RxJava
     implementation 'io.reactivex.rxjava2:rxjava:2.1.2'
@@ -48,11 +49,8 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.4.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.3.0'
 
-    // Volley
-    implementation 'com.android.volley:volley:1.0.0'
-
-    // Gson
-    implementation 'com.google.code.gson:gson:2.8.2'
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
 
     // Timber
     implementation 'com.jakewharton.timber:timber:4.6.0'

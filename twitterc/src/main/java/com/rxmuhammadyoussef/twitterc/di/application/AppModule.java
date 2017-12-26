@@ -5,6 +5,7 @@ import android.content.Context;
 
 import dagger.Module;
 import dagger.Provides;
+import io.reactivex.disposables.CompositeDisposable;
 
 /**
  This class is responsible for providing the requested objects for {@link ApplicationScope} objects
@@ -30,5 +31,11 @@ public class AppModule {
     @ForApplication
     public Context providesApplicationContext() {
         return application;
+    }
+
+    @ApplicationScope
+    @Provides
+    public CompositeDisposable providesCompositeDisposable() {
+        return new CompositeDisposable();
     }
 }

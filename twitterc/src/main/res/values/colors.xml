@@ -16,7 +16,7 @@
     <color name="colorLoginButtonRipple">#FFFFFF</color>
 
     <!--Home page-->
-    <color name="colorHomePageLayoutBackground">#e5e5e5</color>
+    <color name="colorHomePageLayoutBackground">#ffffff</color>
     <!--TextView-->
     <color name="colorHomePageTextViewHeader">#FF525252</color>
     <color name="colorHomePageTextViewSubheader">#FF696969</color>
