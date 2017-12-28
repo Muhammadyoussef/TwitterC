@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.rxmuhammadyoussef.twitterc.R;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityScope;
 import com.rxmuhammadyoussef.twitterc.di.activity.ForActivity;
+import com.rxmuhammadyoussef.twitterc.event.FetchFollowersEvent;
 import com.rxmuhammadyoussef.twitterc.models.user.UserViewModel;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.FollowerViewH
     public void onBindViewHolder(FollowerViewHolder holder, int position) {
         holder.bind(currentFollowersList.get(position));
         if (position == currentFollowersList.size() - 1) {
-            presenter.fetchFollowers();
+            presenter.fetchFollowers(FetchFollowersEvent.BOTTOM);
         }
     }
 

@@ -4,7 +4,6 @@ import com.jakewharton.rxrelay2.BehaviorRelay;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityScope;
 import com.rxmuhammadyoussef.twitterc.event.FetchFollowersEvent;
 import com.rxmuhammadyoussef.twitterc.event.FetchFollowersFinishedEvent;
-import com.rxmuhammadyoussef.twitterc.event.FetchFollowersStartedEvent;
 import com.rxmuhammadyoussef.twitterc.event.FollowersFetchNetworkFailureEvent;
 import com.rxmuhammadyoussef.twitterc.event.LogoutEvent;
 import com.rxmuhammadyoussef.twitterc.models.user.UserMapper;
@@ -61,7 +60,7 @@ class HomePresenter {
         disposable.add(initializeEventsChangesObservable());
         disposable.add(initializeFollowersChangesObservable());
         disposable.add(initializeShouldUpdateUiObservable());
-        fetchFollowers();
+        fetchFollowers(false);
     }
 
     private Disposable initializeEventsChangesObservable() {
@@ -69,8 +68,8 @@ class HomePresenter {
                 .subscribeOn(threadSchedulers.subscribeOn())
                 .observeOn(threadSchedulers.observeOn())
                 .subscribe(event -> {
-                    if (event instanceof FetchFollowersStartedEvent) {
-                        homeScreen.showLoadingAnimation();
+                    if (event instanceof FetchFollowersEvent) {
+                        showAppropriateLoadingAnimation((FetchFollowersEvent) event);
                     } else if (event instanceof FetchFollowersFinishedEvent) {
                         homeScreen.hideLoadingAnimation();
                         if (event instanceof FollowersFetchNetworkFailureEvent) {
@@ -80,6 +79,14 @@ class HomePresenter {
                         homeScreen.logout();
                     }
                 }, Timber::e);
+    }
+
+    private void showAppropriateLoadingAnimation(FetchFollowersEvent event) {
+        if (event.isFromBottom()) {
+            homeScreen.showLoadingAnimationBottom();
+        } else {
+            homeScreen.showLoadingAnimationTop();
+        }
     }
 
     private Disposable initializeFollowersChangesObservable() {
@@ -99,8 +106,8 @@ class HomePresenter {
                 .subscribe(homeScreen::updateFollowers, Timber::e);
     }
 
-    void fetchFollowers() {
-        eventBus.send(new FetchFollowersEvent());
+    void fetchFollowers(boolean direction) {
+        eventBus.send(new FetchFollowersEvent(direction));
     }
 
     void onLogoutClick() {

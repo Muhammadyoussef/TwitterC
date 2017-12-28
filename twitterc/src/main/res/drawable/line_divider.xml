@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <size android:width="@dimen/dividerHeightHomePage"
+        android:height="@dimen/dividerHeightHomePage" />
+    <solid android:color="@color/colorHomePageDivider" />
+</shape>

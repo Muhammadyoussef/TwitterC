@@ -7,6 +7,9 @@
 
     <!--Login-->
     <style name="LoginTheme" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/colorPrimary</item>
         <item name="android:windowBackground">@color/colorLoginLayoutBackground</item>
         <item name="android:buttonStyle">@style/LoginButtonStyle</item>
         <item name="android:textViewStyle">@style/LoginTextViewStyle</item>
@@ -38,8 +41,17 @@
     <style name="HomePageTheme" parent="android:Theme.Material.Light.DarkActionBar">
         <item name="android:colorPrimary">@color/colorPrimary</item>
         <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/colorPrimary</item>
         <item name="android:windowBackground">@color/colorHomePageLayoutBackground</item>
+        <item name="android:progressBarStyle">@style/HomePageProgressbarStyle</item>
         <item name="android:textViewStyle">@null</item>
+    </style>
+
+    <style name="HomePageProgressbarStyle" parent="Base.Widget.AppCompat.ProgressBar">
+        <item name="android:minWidth">@dimen/progressBarSize</item>
+        <item name="android:maxWidth">@dimen/progressBarSize</item>
+        <item name="android:minHeight">@dimen/progressBarSize</item>
+        <item name="android:maxHeight">@dimen/progressBarSize</item>
     </style>
 
     <style name="HomePageTextViewHeaderStyle" parent="android:style/Widget.TextView">

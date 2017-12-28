@@ -3,18 +3,21 @@ package com.rxmuhammadyoussef.twitterc.ui.home;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.rxmuhammadyoussef.twitterc.R;
 import com.rxmuhammadyoussef.twitterc.TwitterCApplication;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityModule;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityScope;
+import com.rxmuhammadyoussef.twitterc.event.FetchFollowersEvent;
 import com.rxmuhammadyoussef.twitterc.models.user.UserViewModel;
+import com.rxmuhammadyoussef.twitterc.widget.SimpleDividerItemDecoration;
 
 import java.util.List;
 
@@ -34,6 +37,8 @@ public class HomeActivity extends Activity implements HomeScreen {
     SwipeRefreshLayout homeLayout;
     @BindView(R.id.rv_followers)
     RecyclerView followersRecyclerView;
+    @BindView(R.id.pb_fetching)
+    ProgressBar fetchingProgressBar;
 
     @Inject
     RecyclerAdapter adapter;
@@ -66,7 +71,7 @@ public class HomeActivity extends Activity implements HomeScreen {
     @Override
     public void setupRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        DividerItemDecoration divider = new DividerItemDecoration(followersRecyclerView.getContext(), layoutManager.getOrientation());
+        SimpleDividerItemDecoration divider = new SimpleDividerItemDecoration(this);
         followersRecyclerView.setLayoutManager(layoutManager);
         followersRecyclerView.addItemDecoration(divider);
         followersRecyclerView.setAdapter(adapter);
@@ -74,16 +79,22 @@ public class HomeActivity extends Activity implements HomeScreen {
 
     @Override
     public void setupRefreshListener() {
-        homeLayout.setOnRefreshListener(() -> presenter.fetchFollowers());
+        homeLayout.setOnRefreshListener(() -> presenter.fetchFollowers(FetchFollowersEvent.TOP));
     }
 
     @Override
-    public void showLoadingAnimation() {
+    public void showLoadingAnimationTop() {
         homeLayout.setRefreshing(true);
     }
 
     @Override
+    public void showLoadingAnimationBottom() {
+        fetchingProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public void hideLoadingAnimation() {
+        fetchingProgressBar.setVisibility(View.GONE);
         homeLayout.setRefreshing(false);
     }
 

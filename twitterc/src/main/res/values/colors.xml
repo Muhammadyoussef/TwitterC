@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Main-->
-    <color name="colorPrimary">#FF525252</color>
-    <color name="colorPrimaryDark">#FF525252</color>
+    <color name="colorPrimary">#FF1DA1F2</color>
+    <color name="colorPrimaryDark">#FF2385C2</color>
     <color name="colorAccent">#ffffff</color>
 
     <!--Login-->
-    <color name="colorLoginLayoutBackground">#e5e5e5</color>
+    <color name="colorLoginLayoutBackground">#FFFFFF</color>
     <!--TextView-->
-    <color name="colorLoginTextViewHeader">#FF525252</color>
-    <color name="colorLoginTextViewBody">#FF525252</color>
+    <color name="colorLoginTextViewHeader">#0E0E0E</color>
+    <color name="colorLoginTextViewBody">#1F1F1F</color>
     <!--Button-->
     <color name="colorLoginButton">#FF1DA1F2</color>
     <color name="colorLoginButtonText">#FFFFFF</color>
     <color name="colorLoginButtonRipple">#FFFFFF</color>
 
     <!--Home page-->
-    <color name="colorHomePageLayoutBackground">#ffffff</color>
+    <color name="colorHomePageLayoutBackground">#FFFFFF</color>
     <!--TextView-->
-    <color name="colorHomePageTextViewHeader">#FF525252</color>
-    <color name="colorHomePageTextViewSubheader">#FF696969</color>
+    <color name="colorHomePageTextViewHeader">#0E0E0E</color>
+    <color name="colorHomePageTextViewSubheader">#1F1F1F</color>
     <color name="colorHomePageTextViewBody">#FFABABAB</color>
-    <color name="colorHomePageDivider">#FFABABAB</color>
+    <color name="colorHomePageDivider">#FFDEDEDE</color>
 </resources>

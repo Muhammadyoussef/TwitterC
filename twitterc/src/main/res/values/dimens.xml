@@ -23,16 +23,17 @@
     <dimen name="radiusLoginButton">50dp</dimen>
 
     <!--Home page-->
-    <dimen name="dividerHeightHomePage">0.5dp</dimen>
+    <dimen name="dividerHeightHomePage">0.4dp</dimen>
     <!--TextView-->
     <dimen name="paddingHomePageTextView">16dp</dimen>
     <dimen name="marginHomePageTextView">16dp</dimen>
     <dimen name="marginTopHomePageTextView">8dp</dimen>
     <dimen name="marginBottomHomePageTextView">8dp</dimen>
-    <dimen name="textSizeHomePageHeader">20sp</dimen>
-    <dimen name="textSizeHomePageSubheader">18sp</dimen>
-    <dimen name="textSizeHomePageBody">18sp</dimen>
+    <dimen name="textSizeHomePageHeader">18sp</dimen>
+    <dimen name="textSizeHomePageSubheader">16sp</dimen>
+    <dimen name="textSizeHomePageBody">14sp</dimen>
     <!--ImageView-->
     <dimen name="marginHomePageImageView">16dp</dimen>
-    <dimen name="homepage_avatar_size">56dp</dimen>
+    <dimen name="homepage_avatar_size">48dp</dimen>
+    <dimen name="progressBarSize">32dp</dimen>
 </resources>

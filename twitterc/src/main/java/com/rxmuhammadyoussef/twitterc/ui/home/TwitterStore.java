@@ -5,7 +5,6 @@ import com.rxmuhammadyoussef.twitterc.api.CloudQueries;
 import com.rxmuhammadyoussef.twitterc.api.FollowersResponse;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityScope;
 import com.rxmuhammadyoussef.twitterc.event.FetchFollowersEvent;
-import com.rxmuhammadyoussef.twitterc.event.FetchFollowersStartedEvent;
 import com.rxmuhammadyoussef.twitterc.event.FollowersFetchNetworkFailureEvent;
 import com.rxmuhammadyoussef.twitterc.event.FollowersFetchSuccessfulEvent;
 import com.rxmuhammadyoussef.twitterc.models.user.User;
@@ -60,7 +59,6 @@ class TwitterStore extends TwitterApiClient {
                         .debounce(500, TimeUnit.MILLISECONDS)
                         .doOnNext(event -> {
                             if (event instanceof FetchFollowersEvent) {
-                                eventBus.send(new FetchFollowersStartedEvent());
                                 fetchUsers();
                             }
                         })

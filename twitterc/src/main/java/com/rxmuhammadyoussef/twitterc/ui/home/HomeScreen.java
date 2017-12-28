@@ -14,7 +14,9 @@ public interface HomeScreen {
 
     void setupRefreshListener();
 
-    void showLoadingAnimation();
+    void showLoadingAnimationTop();
+
+    void showLoadingAnimationBottom();
 
     void hideLoadingAnimation();
 
