@@ -22,4 +22,12 @@
     <color name="colorHomePageTextViewSubheader">#1F1F1F</color>
     <color name="colorHomePageTextViewBody">#FFABABAB</color>
     <color name="colorHomePageDivider">#FFDEDEDE</color>
+
+    <!--User details-->
+    <color name="colorUserDetailsLayoutBackground">#ffffff</color>
+    <!--TextView-->
+    <color name="colorUserDetailsTextViewHeader">#FF525252</color>
+    <color name="colorUserDetailsTextViewSubheader">#FF696969</color>
+    <color name="colorUserDetailsTextViewBody">#FFABABAB</color>
+    <color name="colorUserDetailsDivider">#FFABABAB</color>
 </resources>

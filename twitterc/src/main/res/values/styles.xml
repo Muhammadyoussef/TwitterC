@@ -69,4 +69,29 @@
         <item name="android:textColor">@color/colorHomePageTextViewBody</item>
         <item name="android:textSize">@dimen/textSizeHomePageBody</item>
     </style>
+
+    <!--User details-->
+    <style name="UserDetailsTheme" parent="android:Theme.Material.Light.DarkActionBar">
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/colorPrimary</item>
+        <item name="android:windowBackground">@color/colorUserDetailsLayoutBackground</item>
+        <item name="android:textViewStyle">@null</item>
+    </style>
+
+    <style name="UserDetailsTextViewHeaderStyle" parent="android:style/Widget.TextView">
+        <item name="android:textColor">@color/colorUserDetailsTextViewHeader</item>
+        <item name="android:textSize">@dimen/textSizeUserDetailsHeader</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="UserDetailsTextViewSubheaderStyle" parent="android:style/Widget.TextView">
+        <item name="android:textColor">@color/colorUserDetailsTextViewSubheader</item>
+        <item name="android:textSize">@dimen/textSizeUserDetailsSubheader</item>
+    </style>
+
+    <style name="UserDetailsTextViewBodyStyle" parent="android:style/Widget.TextView">
+        <item name="android:textColor">@color/colorUserDetailsTextViewBody</item>
+        <item name="android:textSize">@dimen/textSizeUserDetailsBody</item>
+    </style>
 </resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@+id/item_follower_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".ui.home.HomeActivity">
+
+    <ImageView
+        android:id="@+id/iv_background"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/userDetailsHeaderHeight"
+        android:contentDescription="@string/user_background_content_description"
+        android:scaleType="centerCrop"
+        tools:src="@mipmap/ic_launcher" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="@dimen/UserDetailsAvatarSize"
+        android:layout_height="@dimen/UserDetailsAvatarSize"
+        android:layout_gravity="start|bottom"
+        android:layout_margin="@dimen/marginUserDetailsImageView"
+        android:contentDescription="@string/user_avatar_content_description"
+        tools:src="@mipmap/ic_launcher" />
+
+</FrameLayout>

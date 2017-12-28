@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout android:id="@+id/item_follower_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".ui.home.HomeActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="@dimen/UserDetailsTweetAvatarSize"
+        android:layout_height="@dimen/UserDetailsTweetAvatarSize"
+        android:layout_margin="@dimen/marginUserDetailsImageView"
+        android:contentDescription="@string/user_avatar_content_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01"
+        tools:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_full_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginUserDetailsTextView"
+        android:theme="@style/UserDetailsTextViewHeaderStyle"
+        app:layout_constraintStart_toEndOf="@id/iv_avatar"
+        app:layout_constraintTop_toTopOf="@id/iv_avatar"
+        tools:text="Muhammad Youssef" />
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/marginTopUserDetailsTextView"
+        android:layout_marginStart="@dimen/marginTopUserDetailsTextView"
+        android:theme="@style/UserDetailsTextViewBodyStyle"
+        app:layout_constraintBottom_toBottomOf="@id/tv_full_name"
+        app:layout_constraintStart_toEndOf="@id/tv_full_name"
+        app:layout_constraintTop_toTopOf="@id/tv_full_name"
+        tools:text="@Myyousseff" />
+
+    <TextView
+        android:id="@+id/tv_tweet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/marginUserDetailsTextView"
+        android:layout_marginEnd="@dimen/marginUserDetailsTextView"
+        android:layout_marginStart="@dimen/marginUserDetailsTextView"
+        android:layout_marginTop="@dimen/marginTopUserDetailsTextView"
+        android:gravity="left"
+        android:theme="@style/UserDetailsTextViewSubheaderStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_avatar"
+        app:layout_constraintTop_toBottomOf="@id/tv_full_name"
+        tools:text="Lorem d do eiusmod tempor incididunt ut labore" />
+</android.support.constraint.ConstraintLayout>

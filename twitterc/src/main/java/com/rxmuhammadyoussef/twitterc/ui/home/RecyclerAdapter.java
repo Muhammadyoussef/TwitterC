@@ -1,6 +1,7 @@
 package com.rxmuhammadyoussef.twitterc.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,9 @@ import com.rxmuhammadyoussef.twitterc.R;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityScope;
 import com.rxmuhammadyoussef.twitterc.di.activity.ForActivity;
 import com.rxmuhammadyoussef.twitterc.event.FetchFollowersEvent;
+import com.rxmuhammadyoussef.twitterc.models.user.User;
 import com.rxmuhammadyoussef.twitterc.models.user.UserViewModel;
+import com.rxmuhammadyoussef.twitterc.ui.userdetails.UserDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,7 +95,9 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.FollowerViewH
 
         @OnClick(R.id.item_follower_container)
         void onItemClick() {
-            //TODO: open user details activity
+            Intent intent = new Intent(context, UserDetailsActivity.class);
+            intent.putExtra(User.USER_ID, currentFollowersList.get(getAdapterPosition()).getUserId());
+            context.startActivity(intent);
         }
     }
 }

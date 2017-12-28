@@ -7,6 +7,7 @@ package com.rxmuhammadyoussef.twitterc.di.activity;
 
 import com.rxmuhammadyoussef.twitterc.ui.home.HomeActivity;
 import com.rxmuhammadyoussef.twitterc.ui.login.LoginActivity;
+import com.rxmuhammadyoussef.twitterc.ui.userdetails.UserDetailsActivity;
 
 import dagger.Subcomponent;
 
@@ -17,4 +18,6 @@ public interface ActivityComponent {
     void inject(LoginActivity loginActivity);
 
     void inject(HomeActivity homeActivity);
+
+    void inject(UserDetailsActivity userDetailsActivity);
 }

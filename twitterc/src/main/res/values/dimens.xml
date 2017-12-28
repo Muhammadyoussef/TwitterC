@@ -36,4 +36,20 @@
     <dimen name="marginHomePageImageView">16dp</dimen>
     <dimen name="homepage_avatar_size">48dp</dimen>
     <dimen name="progressBarSize">32dp</dimen>
+
+    <!--User details-->
+    <dimen name="dividerHeightUserDetails">0.4dp</dimen>
+    <!--TextView-->
+    <dimen name="paddingUserDetailsTextView">16dp</dimen>
+    <dimen name="marginUserDetailsTextView">16dp</dimen>
+    <dimen name="marginTopUserDetailsTextView">8dp</dimen>
+    <dimen name="marginBottomUserDetailsTextView">8dp</dimen>
+    <dimen name="textSizeUserDetailsHeader">18sp</dimen>
+    <dimen name="textSizeUserDetailsSubheader">16sp</dimen>
+    <dimen name="textSizeUserDetailsBody">14sp</dimen>
+    <!--ImageView-->
+    <dimen name="marginUserDetailsImageView">16dp</dimen>
+    <dimen name="UserDetailsTweetAvatarSize">48dp</dimen>
+    <dimen name="UserDetailsAvatarSize">56dp</dimen>
+    <dimen name="userDetailsHeaderHeight">150dp</dimen>
 </resources>

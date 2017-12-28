@@ -28,5 +28,11 @@
             android:label="@string/followers"
             android:screenOrientation="portrait"
             android:theme="@style/HomePageTheme" />
+        <activity
+            android:name=".ui.userdetails.UserDetailsActivity"
+            android:label="@string/details"
+            android:parentActivityName=".ui.home.HomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/UserDetailsTheme" />
     </application>
 </manifest>

@@ -3,13 +3,11 @@ package com.rxmuhammadyoussef.twitterc.di.activity;
 import android.app.Activity;
 import android.content.Context;
 
-import com.rxmuhammadyoussef.twitterc.di.application.ApplicationScope;
-import com.rxmuhammadyoussef.twitterc.di.application.ForApplication;
 import com.rxmuhammadyoussef.twitterc.ui.home.HomeScreen;
+import com.rxmuhammadyoussef.twitterc.ui.userdetails.UserDetailsScreen;
 
 import dagger.Module;
 import dagger.Provides;
-import io.reactivex.disposables.CompositeDisposable;
 
 /**
  This class is responsible for providing the requested objects for {@link ActivityScope} objects
@@ -39,5 +37,11 @@ public class ActivityModule {
     @Provides
     public final HomeScreen provideHomeScreen() {
         return (HomeScreen) activity;
+    }
+
+    @ActivityScope
+    @Provides
+    public final UserDetailsScreen provideUserDetailsScreen() {
+        return (UserDetailsScreen) activity;
     }
 }
