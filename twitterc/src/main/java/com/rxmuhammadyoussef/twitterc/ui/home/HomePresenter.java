@@ -10,6 +10,7 @@ import com.rxmuhammadyoussef.twitterc.models.user.UserMapper;
 import com.rxmuhammadyoussef.twitterc.models.user.UserViewModel;
 import com.rxmuhammadyoussef.twitterc.schedulers.ThreadSchedulers;
 import com.rxmuhammadyoussef.twitterc.schedulers.qualifier.ComputationalThread;
+import com.rxmuhammadyoussef.twitterc.ui.Store.HomeRepo;
 import com.rxmuhammadyoussef.twitterc.util.RxEventBus;
 
 import java.util.Collections;

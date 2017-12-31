@@ -1,6 +1,8 @@
-package com.rxmuhammadyoussef.twitterc.ui.home;
+package com.rxmuhammadyoussef.twitterc.ui.Store;
 
-import com.rxmuhammadyoussef.twitterc.di.activity.ActivityScope;
+import android.util.Log;
+
+import com.rxmuhammadyoussef.twitterc.di.application.ApplicationScope;
 import com.rxmuhammadyoussef.twitterc.models.user.UserEntity;
 
 import java.util.List;
@@ -16,8 +18,8 @@ import io.realm.Realm;
  This class hold all the local-storage-specific operations (i.e. save, get, delete, etc..)
  */
 
-@ActivityScope
-public class LocalStore {
+@ApplicationScope
+class LocalStore {
 
     @Inject
     LocalStore() {
@@ -38,16 +40,22 @@ public class LocalStore {
                         }));
     }
 
-    Completable clearDatabase() {
-        return Completable.create(emitter -> {
-            Realm instance = Realm.getDefaultInstance();
-            instance.executeTransaction(realm -> instance.deleteAll());
-            instance.close();
-            emitter.onComplete();
-        });
+    Single<UserEntity> getUser(long userId) {
+        return Single.just(userId)
+                .map(entities -> {
+                    Realm instance = Realm.getDefaultInstance();
+                    UserEntity userEntity = instance.copyFromRealm(
+                            instance.where(UserEntity.class)
+                                    .equalTo("userId", userId)
+                                    .findFirst());
+
+                    Log.d("Muhammad:local:user", "" + userEntity);
+                    instance.close();
+                    return userEntity;
+                });
     }
 
-    Flowable<List<UserEntity>> observeFollowers() {
+    Flowable<List<UserEntity>> observeUsers() {
         Realm realm = Realm.getDefaultInstance();
         return realm
                 .where(UserEntity.class)
@@ -55,5 +63,14 @@ public class LocalStore {
                 .asFlowable()
                 .map(realm::copyFromRealm)
                 .doOnTerminate(realm::close);
+    }
+
+    Completable clearDatabase() {
+        return Completable.create(emitter -> {
+            Realm instance = Realm.getDefaultInstance();
+            instance.executeTransaction(realm -> instance.deleteAll());
+            instance.close();
+            emitter.onComplete();
+        });
     }
 }

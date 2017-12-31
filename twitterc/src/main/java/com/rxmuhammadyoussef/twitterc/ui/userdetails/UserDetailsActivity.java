@@ -14,6 +14,7 @@ import com.rxmuhammadyoussef.twitterc.TwitterCApplication;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityModule;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityScope;
 import com.rxmuhammadyoussef.twitterc.models.profile.ProfileViewModel;
+import com.rxmuhammadyoussef.twitterc.models.user.User;
 import com.rxmuhammadyoussef.twitterc.widget.SimpleDividerItemDecoration;
 
 import javax.inject.Inject;
@@ -27,6 +28,8 @@ import butterknife.ButterKnife;
 
 @ActivityScope
 public class UserDetailsActivity extends Activity implements UserDetailsScreen {
+
+    private long userId;
 
     @BindView(R.id.rv_profile)
     RecyclerView tweetsRecyclerView;
@@ -46,7 +49,8 @@ public class UserDetailsActivity extends Activity implements UserDetailsScreen {
         TwitterCApplication.getComponent(this)
                 .plus(new ActivityModule(this))
                 .inject(this);
-        presenter.onCreate();
+        userId = getIntent().getLongExtra(User.USER_ID, -1);
+        presenter.onCreate(userId);
     }
 
     @Override
@@ -71,7 +75,7 @@ public class UserDetailsActivity extends Activity implements UserDetailsScreen {
 
     @Override
     public void setupRefreshListener() {
-        profileLayout.setOnRefreshListener(() -> presenter.refreshProfile());
+        profileLayout.setOnRefreshListener(() -> presenter.fetchProfile(userId));
     }
 
     @Override
@@ -96,7 +100,7 @@ public class UserDetailsActivity extends Activity implements UserDetailsScreen {
 
     @Override
     public void logout() {
-        finish();
+        finishAffinity();
     }
 
     @Override

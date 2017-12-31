@@ -1,12 +1,17 @@
-package com.rxmuhammadyoussef.twitterc.ui.home;
+package com.rxmuhammadyoussef.twitterc.ui.Store;
+
+import android.util.Log;
 
 import com.jakewharton.rxrelay2.BehaviorRelay;
 import com.rxmuhammadyoussef.twitterc.api.CloudQueries;
 import com.rxmuhammadyoussef.twitterc.api.FollowersResponse;
-import com.rxmuhammadyoussef.twitterc.di.activity.ActivityScope;
+import com.rxmuhammadyoussef.twitterc.di.application.ApplicationScope;
 import com.rxmuhammadyoussef.twitterc.event.FetchFollowersEvent;
 import com.rxmuhammadyoussef.twitterc.event.FollowersFetchNetworkFailureEvent;
 import com.rxmuhammadyoussef.twitterc.event.FollowersFetchSuccessfulEvent;
+import com.rxmuhammadyoussef.twitterc.event.TweetsFetchNetworkFailureEvent;
+import com.rxmuhammadyoussef.twitterc.event.TweetsFetchSuccessfulEvent;
+import com.rxmuhammadyoussef.twitterc.models.tweet.Tweet;
 import com.rxmuhammadyoussef.twitterc.models.user.User;
 import com.rxmuhammadyoussef.twitterc.schedulers.ThreadSchedulers;
 import com.rxmuhammadyoussef.twitterc.schedulers.qualifier.ComputationalThread;
@@ -25,6 +30,7 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 import timber.log.Timber;
 
@@ -32,7 +38,7 @@ import timber.log.Timber;
  This class hold all the cloud-storage-specific operations for the Twitter API (i.e. save, get, delete, etc..)
  */
 
-@ActivityScope
+@ApplicationScope
 class TwitterStore extends TwitterApiClient {
 
     private static final String CURSOR = "cursor";
@@ -69,6 +75,25 @@ class TwitterStore extends TwitterApiClient {
 
     Observable<List<User>> observeFollowers() {
         return usersRelay.hide();
+    }
+
+    Single<List<Tweet>> fetchTweets(long userId) {
+        return Single.create(e -> getService(CloudQueries.class)
+                .getTweets(userId, 10)
+                .enqueue(new Callback<List<Tweet>>() {
+                    @Override
+                    public void success(Result<List<Tweet>> result) {
+                        eventBus.send(new TweetsFetchSuccessfulEvent());
+                        Log.d("Muhammad:cloud:success", "" + result.data.size());
+                        e.onSuccess(result.data);
+                    }
+
+                    @Override
+                    public void failure(TwitterException exception) {
+                        eventBus.send(new TweetsFetchNetworkFailureEvent());
+                        e.onError(exception);
+                    }
+                }));
     }
 
     private void fetchUsers() {

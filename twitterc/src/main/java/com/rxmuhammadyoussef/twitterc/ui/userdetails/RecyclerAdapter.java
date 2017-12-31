@@ -13,11 +13,8 @@ import com.rxmuhammadyoussef.twitterc.R;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityScope;
 import com.rxmuhammadyoussef.twitterc.di.activity.ForActivity;
 import com.rxmuhammadyoussef.twitterc.models.profile.ProfileViewModel;
-import com.rxmuhammadyoussef.twitterc.models.profile.TweetViewModel;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import com.rxmuhammadyoussef.twitterc.models.tweet.TweetViewModel;
+import com.rxmuhammadyoussef.twitterc.models.user.UserViewModel;
 
 import javax.inject.Inject;
 
@@ -34,12 +31,12 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final Context context;
     private final LayoutInflater layoutInflater;
     private ProfileViewModel currentProfileState;
-    private final List<TweetViewModel> currentTweetsList = Collections.emptyList();
 
     @Inject
     RecyclerAdapter(@ForActivity Context context) {
         this.context = context;
-        layoutInflater = LayoutInflater.from(context);
+        this.layoutInflater = LayoutInflater.from(context);
+        this.currentProfileState = ProfileViewModel.createEmpty();
     }
 
     @Override
@@ -64,22 +61,20 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof TweetViewHolder) {
             if (currentProfileState != null) {
-                ((TweetViewHolder) holder).bind(currentTweetsList.get(position));
+                ((TweetViewHolder) holder).bind(currentProfileState, currentProfileState.getTweets().get(position - 1));
             }
         } else if (holder instanceof HeaderViewHolder) {
-            ((HeaderViewHolder) holder).bind(currentProfileState);
+            ((HeaderViewHolder) holder).bind(currentProfileState.getUser());
         }
     }
 
     @Override
     public int getItemCount() {
-        return currentTweetsList.size();
+        return currentProfileState.getTweets().size() + 1;
     }
 
     void update(ProfileViewModel newProfileState) {
         this.currentProfileState = newProfileState;
-        currentTweetsList.clear();
-        currentTweetsList.addAll(newProfileState.getTweets());
         notifyDataSetChanged();
     }
 
@@ -99,12 +94,12 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ButterKnife.bind(this, itemView);
         }
 
-        void bind(TweetViewModel tweet) {
+        void bind(ProfileViewModel profile, TweetViewModel tweet) {
             Glide.with(context)
-                    .load(tweet.getUser().getImageUrl())
+                    .load(profile.getUser().getImageUrl())
                     .into(avatarImageView);
-            fullNameTextView.setText(tweet.getUser().getFulName());
-            userNameTextView.setText(tweet.getUser().getUserName());
+            fullNameTextView.setText(profile.getUser().getFulName());
+            userNameTextView.setText(profile.getUser().getUserName());
             tweetTextView.setText(tweet.getText());
         }
     }
@@ -121,12 +116,12 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ButterKnife.bind(this, itemView);
         }
 
-        void bind(ProfileViewModel profile) {
+        void bind(UserViewModel user) {
             Glide.with(context)
-                    .load(profile.getAvatarUrl())
+                    .load(user.getImageUrl())
                     .into(avatarImageView);
             Glide.with(context)
-                    .load(profile.getBackgroundUrl())
+                    .load(user.getBackgroundUrl())
                     .into(backgroundImageView);
         }
 

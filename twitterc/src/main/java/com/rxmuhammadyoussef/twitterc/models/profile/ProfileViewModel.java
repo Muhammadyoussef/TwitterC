@@ -1,5 +1,9 @@
 package com.rxmuhammadyoussef.twitterc.models.profile;
 
+import com.rxmuhammadyoussef.twitterc.models.tweet.TweetViewModel;
+import com.rxmuhammadyoussef.twitterc.models.user.UserViewModel;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,40 +12,20 @@ import java.util.List;
 
 public class ProfileViewModel {
 
-    private final long userId;
-    private final String fulName;
-    private final String userName;
-    private final String backgroundUrl;
-    private final String avatarUrl;
+    private final UserViewModel user;
     private final List<TweetViewModel> tweets;
 
-    public ProfileViewModel(long userId, String fulName, String userName, String backgroundUrl, String avatarUrl, List<TweetViewModel> tweets) {
-        this.userId = userId;
-        this.fulName = fulName;
-        this.userName = userName;
-        this.backgroundUrl = backgroundUrl;
-        this.avatarUrl = avatarUrl;
+    public ProfileViewModel(UserViewModel user, List<TweetViewModel> tweets) {
+        this.user = user;
         this.tweets = tweets;
     }
 
-    public long getUserId() {
-        return userId;
+    public static ProfileViewModel createEmpty() {
+        return new ProfileViewModel(UserViewModel.createEmpty(), new ArrayList<>());
     }
 
-    public String getFulName() {
-        return fulName;
-    }
-
-    public String getUserName() {
-        return "@".concat(userName);
-    }
-
-    public String getBackgroundUrl() {
-        return backgroundUrl;
-    }
-
-    public String getAvatarUrl() {
-        return avatarUrl;
+    public UserViewModel getUser() {
+        return user;
     }
 
     public List<TweetViewModel> getTweets() {

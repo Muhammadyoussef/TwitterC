@@ -11,13 +11,24 @@ public class UserViewModel {
     private final String userName;
     private final String bio;
     private final String imageUrl;
+    private final String backgroundUrl;
 
-    UserViewModel(long userId, String fulName, String userName, String bio, String imageUrl) {
+    UserViewModel(long userId, String fulName, String userName, String bio, String imageUrl, String backgroundUrl) {
         this.userId = userId;
         this.fulName = fulName;
         this.userName = userName;
         this.bio = bio;
         this.imageUrl = imageUrl;
+        this.backgroundUrl = backgroundUrl;
+    }
+
+    public static UserViewModel createEmpty() {
+        return new UserViewModel(-1,
+                "",
+                "",
+                "",
+                "",
+                "");
     }
 
     public long getUserId() {
@@ -38,5 +49,9 @@ public class UserViewModel {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public String getBackgroundUrl() {
+        return backgroundUrl;
     }
 }

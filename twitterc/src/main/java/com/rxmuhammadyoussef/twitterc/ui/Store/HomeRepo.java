@@ -1,4 +1,4 @@
-package com.rxmuhammadyoussef.twitterc.ui.home;
+package com.rxmuhammadyoussef.twitterc.ui.Store;
 
 import com.jakewharton.rxrelay2.BehaviorRelay;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityScope;
@@ -26,7 +26,7 @@ import timber.log.Timber;
  */
 
 @ActivityScope
-class HomeRepo {
+public class HomeRepo {
 
     private final BehaviorRelay<List<User>> usersRelay;
     private final ThreadSchedulers threadSchedulers;
@@ -38,13 +38,13 @@ class HomeRepo {
     private final UserMapper mapper;
 
     @Inject
-    HomeRepo(@IOThread ThreadSchedulers threadSchedulers,
-             PreferencesUtil preferencesUtil,
-             CompositeDisposable disposable,
-             TwitterStore twitterStore,
-             LocalStore localStore,
-             RxEventBus eventBus,
-             UserMapper mapper) {
+    public HomeRepo(@IOThread ThreadSchedulers threadSchedulers,
+                    PreferencesUtil preferencesUtil,
+                    CompositeDisposable disposable,
+                    TwitterStore twitterStore,
+                    LocalStore localStore,
+                    RxEventBus eventBus,
+                    UserMapper mapper) {
         this.threadSchedulers = threadSchedulers;
         this.preferencesUtil = preferencesUtil;
         this.disposable = disposable;
@@ -55,9 +55,9 @@ class HomeRepo {
         this.usersRelay = BehaviorRelay.createDefault(Collections.emptyList());
     }
 
-    void onCreate() {
+    public void onCreate() {
         disposable.add(
-                localStore.observeFollowers()
+                localStore.observeUsers()
                         .map(mapper::toModels)
                         /*subscribeOn and subscribeOn
                          were intentionally left out due some limitations in Realm's multi-threading.
@@ -73,7 +73,7 @@ class HomeRepo {
                         .subscribe(Functions.EMPTY_ACTION, Timber::e));
     }
 
-    void clearDatabase() {
+    public void clearDatabase() {
         localStore.clearDatabase()
                 .subscribeOn(threadSchedulers.subscribeOn())
                 .observeOn(threadSchedulers.observeOn())
@@ -84,7 +84,7 @@ class HomeRepo {
                 }, Timber::e);
     }
 
-    Observable<List<User>> observeFollowers() {
+    public Observable<List<User>> observeFollowers() {
         return usersRelay.hide();
     }
 }
