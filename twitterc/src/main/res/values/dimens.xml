@@ -50,6 +50,7 @@
     <!--ImageView-->
     <dimen name="marginUserDetailsImageView">16dp</dimen>
     <dimen name="UserDetailsTweetAvatarSize">48dp</dimen>
-    <dimen name="UserDetailsAvatarSize">56dp</dimen>
-    <dimen name="userDetailsHeaderHeight">150dp</dimen>
+    <dimen name="UserDetailsAvatarSize">100dp</dimen>
+    <dimen name="userDetailsHeaderHeight">200dp</dimen>
+    <dimen name="userDetailsAvatarBorderSize">4dp</dimen>
 </resources>

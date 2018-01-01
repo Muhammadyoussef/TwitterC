@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout android:id="@+id/item_follower_container"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -21,9 +22,11 @@
         android:id="@+id/iv_avatar"
         android:layout_width="@dimen/UserDetailsAvatarSize"
         android:layout_height="@dimen/UserDetailsAvatarSize"
-        android:layout_gravity="start|bottom"
+        android:layout_gravity="center_vertical|center_horizontal"
         android:layout_margin="@dimen/marginUserDetailsImageView"
         android:contentDescription="@string/user_avatar_content_description"
+        app:civ_border_color="@color/colorUserDetailsAvatarBorder"
+        app:civ_border_width="@dimen/userDetailsAvatarBorderSize"
         tools:src="@mipmap/ic_launcher" />
 
 </FrameLayout>

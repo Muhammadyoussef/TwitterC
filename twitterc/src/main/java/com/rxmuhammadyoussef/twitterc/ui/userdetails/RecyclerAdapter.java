@@ -15,6 +15,7 @@ import com.rxmuhammadyoussef.twitterc.di.activity.ForActivity;
 import com.rxmuhammadyoussef.twitterc.store.model.profile.ProfileViewModel;
 import com.rxmuhammadyoussef.twitterc.store.model.tweet.TweetViewModel;
 import com.rxmuhammadyoussef.twitterc.store.model.user.UserViewModel;
+import com.rxmuhammadyoussef.twitterc.util.GlideApp;
 
 import javax.inject.Inject;
 
@@ -120,8 +121,9 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             Glide.with(context)
                     .load(user.getImageUrl())
                     .into(avatarImageView);
-            Glide.with(context)
+            GlideApp.with(context)
                     .load(user.getBackgroundUrl())
+                    .placeholder(R.color.colorUserDetailsBackgroundPlaceHolder)
                     .into(backgroundImageView);
         }
 

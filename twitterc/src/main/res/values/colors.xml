@@ -30,4 +30,7 @@
     <color name="colorUserDetailsTextViewSubheader">#FF696969</color>
     <color name="colorUserDetailsTextViewBody">#FFABABAB</color>
     <color name="colorUserDetailsDivider">#FFABABAB</color>
+    <!--ImageView-->
+    <color name="colorUserDetailsAvatarBorder">#FFFFFF</color>
+    <color name="colorUserDetailsBackgroundPlaceHolder">#FF696969</color>
 </resources>
