@@ -1,6 +1,6 @@
 package com.rxmuhammadyoussef.twitterc.ui.userdetails;
 
-import com.rxmuhammadyoussef.twitterc.models.profile.ProfileViewModel;
+import com.rxmuhammadyoussef.twitterc.store.model.profile.ProfileViewModel;
 
 /**
  this class represents how the user details page view layer should behave

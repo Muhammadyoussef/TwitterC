@@ -2,13 +2,13 @@ package com.rxmuhammadyoussef.twitterc.ui.userdetails;
 
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityScope;
 import com.rxmuhammadyoussef.twitterc.event.FetchTweetsFinishedEvent;
-import com.rxmuhammadyoussef.twitterc.event.TweetsFetchNetworkFailureEvent;
-import com.rxmuhammadyoussef.twitterc.models.profile.ProfileViewModel;
-import com.rxmuhammadyoussef.twitterc.models.tweet.TweetMapper;
-import com.rxmuhammadyoussef.twitterc.models.user.UserMapper;
+import com.rxmuhammadyoussef.twitterc.event.FetchTweetsNetworkFailureEvent;
 import com.rxmuhammadyoussef.twitterc.schedulers.ThreadSchedulers;
 import com.rxmuhammadyoussef.twitterc.schedulers.qualifier.ComputationalThread;
-import com.rxmuhammadyoussef.twitterc.ui.Store.UserDetailsRepo;
+import com.rxmuhammadyoussef.twitterc.store.UserDetailsRepo;
+import com.rxmuhammadyoussef.twitterc.store.model.profile.ProfileViewModel;
+import com.rxmuhammadyoussef.twitterc.store.model.tweet.TweetMapper;
+import com.rxmuhammadyoussef.twitterc.store.model.user.UserMapper;
 import com.rxmuhammadyoussef.twitterc.util.RxEventBus;
 
 import javax.inject.Inject;
@@ -61,7 +61,7 @@ class UserDetailsPresenter {
                 .subscribe(event -> {
                     if (event instanceof FetchTweetsFinishedEvent) {
                         userDetailsScreen.hideLoadingAnimation();
-                        if (event instanceof TweetsFetchNetworkFailureEvent) {
+                        if (event instanceof FetchTweetsNetworkFailureEvent) {
                             userDetailsScreen.showNetworkError();
                         }
                     }
@@ -72,7 +72,6 @@ class UserDetailsPresenter {
         userDetailsScreen.showLoadingAnimation();
         Observable.combineLatest(
                 userDetailsRepo.fetchUserDetails(userId)
-                        .map(userMapper::toModel)
                         .map(userMapper::toViewModel)
                         .toObservable(),
                 userDetailsRepo.fetchTweets(userId)

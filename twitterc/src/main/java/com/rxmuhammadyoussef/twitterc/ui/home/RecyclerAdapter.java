@@ -1,7 +1,6 @@
 package com.rxmuhammadyoussef.twitterc.ui.home;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +11,8 @@ import com.bumptech.glide.Glide;
 import com.rxmuhammadyoussef.twitterc.R;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityScope;
 import com.rxmuhammadyoussef.twitterc.di.activity.ForActivity;
-import com.rxmuhammadyoussef.twitterc.event.FetchFollowersEvent;
-import com.rxmuhammadyoussef.twitterc.models.user.User;
-import com.rxmuhammadyoussef.twitterc.models.user.UserViewModel;
-import com.rxmuhammadyoussef.twitterc.ui.userdetails.UserDetailsActivity;
+import com.rxmuhammadyoussef.twitterc.store.model.user.UserViewModel;
+import com.rxmuhammadyoussef.twitterc.ui.home.HomePresenter.LoadingPosition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,12 +29,13 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.FollowerViewH
 
     private final Context context;
     private final HomePresenter presenter;
-    private final List<UserViewModel> currentFollowersList = new ArrayList<>();
+    private final List<UserViewModel> currentFollowersList;
 
     @Inject
     RecyclerAdapter(@ForActivity Context context, HomePresenter presenter) {
         this.context = context;
         this.presenter = presenter;
+        this.currentFollowersList = new ArrayList<>();
     }
 
     @Override
@@ -53,7 +51,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.FollowerViewH
     public void onBindViewHolder(FollowerViewHolder holder, int position) {
         holder.bind(currentFollowersList.get(position));
         if (position == currentFollowersList.size() - 1) {
-            presenter.fetchFollowers(FetchFollowersEvent.BOTTOM);
+            presenter.fetchFollowers(LoadingPosition.BOTTOM);
         }
     }
 
@@ -95,9 +93,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.FollowerViewH
 
         @OnClick(R.id.item_follower_container)
         void onItemClick() {
-            Intent intent = new Intent(context, UserDetailsActivity.class);
-            intent.putExtra(User.USER_ID, currentFollowersList.get(getAdapterPosition()).getUserId());
-            context.startActivity(intent);
+            presenter.showFollowerProfile(currentFollowersList.get(getAdapterPosition()).getUserId());
         }
     }
 }

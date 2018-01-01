@@ -1,6 +1,6 @@
 package com.rxmuhammadyoussef.twitterc.api;
 
-import com.rxmuhammadyoussef.twitterc.models.tweet.Tweet;
+import com.rxmuhammadyoussef.twitterc.store.model.tweet.Tweet;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 /**
- This class hold all the queries need to communicate with Twitter's API.
+ This class hold all the queries needed to communicate with Twitter's API.
  */
 
 public interface CloudQueries {

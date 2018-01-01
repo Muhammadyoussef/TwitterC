@@ -1,7 +1,7 @@
-package com.rxmuhammadyoussef.twitterc.models.tweet;
+package com.rxmuhammadyoussef.twitterc.store.model.tweet;
 
 /**
- TODO: Add class header
+ This class represents the user view model object, a view-layer-ready version of {@link Tweet}
  */
 
 public class TweetViewModel {

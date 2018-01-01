@@ -1,6 +1,7 @@
 package com.rxmuhammadyoussef.twitterc.ui.home;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,8 +16,10 @@ import com.rxmuhammadyoussef.twitterc.R;
 import com.rxmuhammadyoussef.twitterc.TwitterCApplication;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityModule;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityScope;
-import com.rxmuhammadyoussef.twitterc.event.FetchFollowersEvent;
-import com.rxmuhammadyoussef.twitterc.models.user.UserViewModel;
+import com.rxmuhammadyoussef.twitterc.store.model.user.User;
+import com.rxmuhammadyoussef.twitterc.store.model.user.UserViewModel;
+import com.rxmuhammadyoussef.twitterc.ui.home.HomePresenter.LoadingPosition;
+import com.rxmuhammadyoussef.twitterc.ui.userdetails.UserDetailsActivity;
 import com.rxmuhammadyoussef.twitterc.widget.SimpleDividerItemDecoration;
 
 import java.util.List;
@@ -79,7 +82,7 @@ public class HomeActivity extends Activity implements HomeScreen {
 
     @Override
     public void setupRefreshListener() {
-        homeLayout.setOnRefreshListener(() -> presenter.fetchFollowers(FetchFollowersEvent.TOP));
+        homeLayout.setOnRefreshListener(() -> presenter.fetchFollowers(LoadingPosition.TOP));
     }
 
     @Override
@@ -104,13 +107,20 @@ public class HomeActivity extends Activity implements HomeScreen {
     }
 
     @Override
+    public void showFollowerProfile(long userId) {
+        Intent intent = new Intent(this, UserDetailsActivity.class);
+        intent.putExtra(User.USER_ID, userId);
+        startActivity(intent);
+    }
+
+    @Override
     public void showNetworkError() {
         Toast.makeText(this, R.string.network_error, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void logout() {
-        finish();
+        finishAffinity();
     }
 
     public void onLogoutClick(MenuItem item) {

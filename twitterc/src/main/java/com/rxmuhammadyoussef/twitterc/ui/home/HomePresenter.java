@@ -1,24 +1,19 @@
 package com.rxmuhammadyoussef.twitterc.ui.home;
 
-import com.jakewharton.rxrelay2.BehaviorRelay;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityScope;
-import com.rxmuhammadyoussef.twitterc.event.FetchFollowersEvent;
 import com.rxmuhammadyoussef.twitterc.event.FetchFollowersFinishedEvent;
-import com.rxmuhammadyoussef.twitterc.event.FollowersFetchNetworkFailureEvent;
-import com.rxmuhammadyoussef.twitterc.event.LogoutEvent;
-import com.rxmuhammadyoussef.twitterc.models.user.UserMapper;
-import com.rxmuhammadyoussef.twitterc.models.user.UserViewModel;
+import com.rxmuhammadyoussef.twitterc.event.FetchFollowersNetworkFailureEvent;
 import com.rxmuhammadyoussef.twitterc.schedulers.ThreadSchedulers;
 import com.rxmuhammadyoussef.twitterc.schedulers.qualifier.ComputationalThread;
-import com.rxmuhammadyoussef.twitterc.ui.Store.HomeRepo;
+import com.rxmuhammadyoussef.twitterc.store.HomeRepo;
+import com.rxmuhammadyoussef.twitterc.store.model.user.UserMapper;
 import com.rxmuhammadyoussef.twitterc.util.RxEventBus;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
+import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import timber.log.Timber;
@@ -30,13 +25,17 @@ import timber.log.Timber;
 @ActivityScope
 class HomePresenter {
 
-    private final BehaviorRelay<List<UserViewModel>> userViewModelsRelay;
+    enum LoadingPosition {
+        TOP, BOTTOM
+    }
+
     private final ThreadSchedulers threadSchedulers;
+
     private final CompositeDisposable disposable;
     private final HomeScreen homeScreen;
     private final RxEventBus eventBus;
     private final HomeRepo homeRepo;
-    private final UserMapper mapper;
+    private final UserMapper userMapper;
 
     @Inject
     HomePresenter(@ComputationalThread ThreadSchedulers threadSchedulers,
@@ -49,9 +48,8 @@ class HomePresenter {
         this.disposable = disposable;
         this.homeScreen = homeScreen;
         this.homeRepo = homeRepo;
-        this.mapper = mapper;
+        this.userMapper = mapper;
         this.eventBus = eventBus;
-        this.userViewModelsRelay = BehaviorRelay.createDefault(Collections.emptyList());
     }
 
     void onCreate() {
@@ -60,8 +58,7 @@ class HomePresenter {
         homeRepo.onCreate();
         disposable.add(initializeEventsChangesObservable());
         disposable.add(initializeFollowersChangesObservable());
-        disposable.add(initializeShouldUpdateUiObservable());
-        fetchFollowers(false);
+        fetchFollowers(LoadingPosition.TOP);
     }
 
     private Disposable initializeEventsChangesObservable() {
@@ -69,50 +66,48 @@ class HomePresenter {
                 .subscribeOn(threadSchedulers.subscribeOn())
                 .observeOn(threadSchedulers.observeOn())
                 .subscribe(event -> {
-                    if (event instanceof FetchFollowersEvent) {
-                        showAppropriateLoadingAnimation((FetchFollowersEvent) event);
-                    } else if (event instanceof FetchFollowersFinishedEvent) {
+                    if (event instanceof FetchFollowersFinishedEvent) {
                         homeScreen.hideLoadingAnimation();
-                        if (event instanceof FollowersFetchNetworkFailureEvent) {
+                        if (event instanceof FetchFollowersNetworkFailureEvent) {
                             homeScreen.showNetworkError();
                         }
-                    } else if (event instanceof LogoutEvent) {
-                        homeScreen.logout();
                     }
                 }, Timber::e);
     }
 
-    private void showAppropriateLoadingAnimation(FetchFollowersEvent event) {
-        if (event.isFromBottom()) {
-            homeScreen.showLoadingAnimationBottom();
-        } else {
-            homeScreen.showLoadingAnimationTop();
-        }
-    }
-
     private Disposable initializeFollowersChangesObservable() {
         return homeRepo.observeFollowers()
-                .map(mapper::toViewModels)
-                .subscribeOn(threadSchedulers.subscribeOn())
-                .observeOn(threadSchedulers.observeOn())
-                .subscribe(userViewModelsRelay::accept, Timber::e);
-    }
-
-    private Disposable initializeShouldUpdateUiObservable() {
-        return userViewModelsRelay
                 .debounce(200, TimeUnit.MICROSECONDS)
                 .distinctUntilChanged()
+                .map(userMapper::toViewModels)
                 .subscribeOn(threadSchedulers.subscribeOn())
                 .observeOn(threadSchedulers.observeOn())
                 .subscribe(homeScreen::updateFollowers, Timber::e);
     }
 
-    void fetchFollowers(boolean direction) {
-        eventBus.send(new FetchFollowersEvent(direction));
+    void fetchFollowers(LoadingPosition direction) {
+        if (direction == LoadingPosition.BOTTOM) {
+            homeScreen.showLoadingAnimationBottom();
+        } else {
+            homeScreen.showLoadingAnimationTop();
+        }
+        homeRepo.fetchFollowers();
+    }
+
+    void showFollowerProfile(long userId) {
+        disposable.add(
+                Single.just(userId)
+                        .subscribeOn(threadSchedulers.subscribeOn())
+                        .observeOn(threadSchedulers.observeOn())
+                        .subscribe(homeScreen::showFollowerProfile, Timber::e));
     }
 
     void onLogoutClick() {
-        homeRepo.clearDatabase();
+        disposable.add(
+                homeRepo.clearDatabase()
+                        .subscribeOn(threadSchedulers.subscribeOn())
+                        .observeOn(threadSchedulers.observeOn())
+                        .subscribe(homeScreen::logout, Timber::e));
     }
 
     void onDestroy() {

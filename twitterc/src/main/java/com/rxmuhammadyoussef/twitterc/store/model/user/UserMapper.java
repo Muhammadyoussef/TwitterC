@@ -1,4 +1,4 @@
-package com.rxmuhammadyoussef.twitterc.models.user;
+package com.rxmuhammadyoussef.twitterc.store.model.user;
 
 import com.rxmuhammadyoussef.twitterc.di.application.ApplicationScope;
 
@@ -17,28 +17,6 @@ public class UserMapper {
     @Inject
     UserMapper() {
 
-    }
-
-    /**
-     this method should be used when passing objects from the model layer to the presenter layer
-     it maps list of {@link UserEntity} to list of {@link User}
-
-     @param userEntities that is passed from the model layer and needs to be mapped
-
-     @return the mapped list of Users, ready to be used in the presenter layer
-     */
-    public List<User> toModels(List<UserEntity> userEntities) {
-        List<User> users = new ArrayList<>();
-        for (UserEntity entity : userEntities) {
-            users.add(
-                    new User(entity.getUserId(),
-                            entity.getFullName(),
-                            entity.getUserName(),
-                            entity.getUserBio(),
-                            entity.getBackgroundUrl(),
-                            entity.getAvatarUrl()));
-        }
-        return users;
     }
 
     /**
@@ -71,9 +49,9 @@ public class UserMapper {
 
      @return the mapped list of userViewModel, ready to be used in the view layer
      */
-    public List<UserViewModel> toViewModels(List<User> users) {
+    public List<UserViewModel> toViewModels(List<UserEntity> users) {
         List<UserViewModel> userViewModels = new ArrayList<>();
-        for (User user : users) {
+        for (UserEntity user : users) {
             userViewModels.add(
                     new UserViewModel(user.getUserId(),
                             user.getFullName(),
@@ -86,42 +64,6 @@ public class UserMapper {
     }
 
     /**
-     this method should be used when passing objects from the model layer to the presenter layer
-     it maps list of {@link UserEntity} to list of {@link User}
-
-     @param userEntity that is passed from the model layer and needs to be mapped
-
-     @return the mapped list of Users, ready to be used in the presenter layer
-     */
-    public User toModel(UserEntity userEntity) {
-        return new User(
-                userEntity.getUserId(),
-                userEntity.getFullName(),
-                userEntity.getUserName(),
-                userEntity.getUserBio(),
-                userEntity.getBackgroundUrl(),
-                userEntity.getAvatarUrl());
-    }
-
-    /**
-     this method should be used when passing objects from the presenter layer to the model layer
-     it maps list of {@link User} to list {@link UserEntity}
-
-     @param user that is passed from the presenter layer and needs to be mapped
-
-     @return the mapped list of UserEntities, ready to be used in the model layer
-     */
-    public UserEntity toEntity(User user) {
-        return new UserEntity(
-                user.getUserId(),
-                user.getFullName(),
-                user.getUserName(),
-                user.getUserBio(),
-                user.getBackgroundUrl(),
-                user.getAvatarUrl());
-    }
-
-    /**
      this method should be used when passing objects from the presenter layer to the view layer
      it maps list of {@link User} to list of {@link UserViewModel}
 
@@ -129,7 +71,7 @@ public class UserMapper {
 
      @return the mapped list of userViewModel, ready to be used in the view layer
      */
-    public UserViewModel toViewModel(User user) {
+    public UserViewModel toViewModel(UserEntity user) {
         return new UserViewModel(
                 user.getUserId(),
                 user.getFullName(),

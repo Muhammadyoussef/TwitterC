@@ -1,10 +1,10 @@
-package com.rxmuhammadyoussef.twitterc.models.tweet;
+package com.rxmuhammadyoussef.twitterc.store.model.tweet;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 /**
- TODO: Add class header
+ This class represents the Tweet database entity object, a database ready-to-store version of {@link Tweet}
  */
 
 public class TweetEntity extends RealmObject {

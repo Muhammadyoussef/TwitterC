@@ -13,8 +13,8 @@ import com.rxmuhammadyoussef.twitterc.R;
 import com.rxmuhammadyoussef.twitterc.TwitterCApplication;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityModule;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityScope;
-import com.rxmuhammadyoussef.twitterc.models.profile.ProfileViewModel;
-import com.rxmuhammadyoussef.twitterc.models.user.User;
+import com.rxmuhammadyoussef.twitterc.store.model.profile.ProfileViewModel;
+import com.rxmuhammadyoussef.twitterc.store.model.user.User;
 import com.rxmuhammadyoussef.twitterc.widget.SimpleDividerItemDecoration;
 
 import javax.inject.Inject;

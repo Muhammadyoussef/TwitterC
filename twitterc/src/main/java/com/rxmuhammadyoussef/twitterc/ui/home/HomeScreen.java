@@ -1,6 +1,6 @@
 package com.rxmuhammadyoussef.twitterc.ui.home;
 
-import com.rxmuhammadyoussef.twitterc.models.user.UserViewModel;
+import com.rxmuhammadyoussef.twitterc.store.model.user.UserViewModel;
 
 import java.util.List;
 
@@ -21,6 +21,8 @@ public interface HomeScreen {
     void hideLoadingAnimation();
 
     void updateFollowers(List<UserViewModel> userViewModels);
+
+    void showFollowerProfile(long userId);
 
     void showNetworkError();
 

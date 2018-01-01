@@ -1,7 +1,7 @@
 package com.rxmuhammadyoussef.twitterc.api;
 
 import com.google.gson.annotations.SerializedName;
-import com.rxmuhammadyoussef.twitterc.models.user.User;
+import com.rxmuhammadyoussef.twitterc.store.model.user.User;
 
 import java.util.List;
 

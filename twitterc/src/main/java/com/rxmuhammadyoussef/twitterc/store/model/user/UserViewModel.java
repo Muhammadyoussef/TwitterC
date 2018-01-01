@@ -1,4 +1,4 @@
-package com.rxmuhammadyoussef.twitterc.models.user;
+package com.rxmuhammadyoussef.twitterc.store.model.user;
 
 /**
  This class represents the user view model object, a view-layer-ready version of {@link User}

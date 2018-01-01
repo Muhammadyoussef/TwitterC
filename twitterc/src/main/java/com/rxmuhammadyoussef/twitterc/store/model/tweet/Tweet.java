@@ -1,9 +1,9 @@
-package com.rxmuhammadyoussef.twitterc.models.tweet;
+package com.rxmuhammadyoussef.twitterc.store.model.tweet;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
- TODO: Add class header
+ This class represents the Tweet model which holds all the meta-data about a user's tweets
  */
 
 public class Tweet {

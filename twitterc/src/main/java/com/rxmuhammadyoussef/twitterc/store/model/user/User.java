@@ -1,4 +1,4 @@
-package com.rxmuhammadyoussef.twitterc.models.user;
+package com.rxmuhammadyoussef.twitterc.store.model.user;
 
 import com.google.gson.annotations.SerializedName;
 

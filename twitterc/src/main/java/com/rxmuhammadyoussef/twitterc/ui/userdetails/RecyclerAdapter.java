@@ -12,9 +12,9 @@ import com.bumptech.glide.Glide;
 import com.rxmuhammadyoussef.twitterc.R;
 import com.rxmuhammadyoussef.twitterc.di.activity.ActivityScope;
 import com.rxmuhammadyoussef.twitterc.di.activity.ForActivity;
-import com.rxmuhammadyoussef.twitterc.models.profile.ProfileViewModel;
-import com.rxmuhammadyoussef.twitterc.models.tweet.TweetViewModel;
-import com.rxmuhammadyoussef.twitterc.models.user.UserViewModel;
+import com.rxmuhammadyoussef.twitterc.store.model.profile.ProfileViewModel;
+import com.rxmuhammadyoussef.twitterc.store.model.tweet.TweetViewModel;
+import com.rxmuhammadyoussef.twitterc.store.model.user.UserViewModel;
 
 import javax.inject.Inject;
 
@@ -36,7 +36,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     RecyclerAdapter(@ForActivity Context context) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
-        this.currentProfileState = ProfileViewModel.createEmpty();
+        this.currentProfileState = ProfileViewModel.emptyProfile();
     }
 
     @Override
